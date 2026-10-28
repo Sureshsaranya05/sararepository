@@ -1,0 +1,26 @@
+name: env demo
+on: push
+env:
+ app_name: "calculator"
+jobs:
+  demo:
+   runs-on: ubuntu-latest
+   env:
+     Environment: "testing"
+
+   steps:
+    - name: checkout repo
+      uses: actions/checkout@v4
+
+    - name:  Install Python
+      uses: actions/setup-python@v5
+
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+    - name: print variables
+      env: 
+       Greeting: "Hello"
+      run: |
+        echo "$Greeting from $app_name"
+         echo "running in $environment"
+     
