@@ -17,6 +17,10 @@ jobs:
 
     - name: Install dependencies
       run: pip install -r requirements.txt
+
+    - name: run python
+      run: python3 pyhtondemo.py
+      
     - name: print variables
       env: 
        Greeting: "Hello"
