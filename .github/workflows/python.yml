@@ -12,7 +12,7 @@ jobs:
           python-version: "3.12"
 
       - name: Run my script
-        run: Pythondemo.py
+        run: pythondemo.py
 
         
       
