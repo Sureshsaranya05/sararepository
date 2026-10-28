@@ -2,17 +2,24 @@ name: Python Tests
 on: workflow_dispatch
 jobs:
   test:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11","3.12"]
+        os: [ubuntu-latest,windows-latest,macos-latest]
+    runs-on: ${{matrix.os}}
     steps:
       - name: get my code
         uses: actions/checkout@v4
       - name: Install Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
+          python-version: ${{matrix.python-version}}
 
-      - name: Run my script
-        run: python pythondemo.py
+      - name: install dependencies ${{matrix.python-version}}
+        run: pip install -r requirement.txt
+
+      - name: Run my tests
+        run: pytest
 
         
       
